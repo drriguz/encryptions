@@ -1,5 +1,7 @@
+import 'package:encryptions/hex.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
+import 'dart:typed_data';
 
 import 'package:flutter/services.dart';
 import 'package:encryptions/encryptions.dart';
@@ -12,7 +14,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  String _platformVersion = 'Unknown';
+  String _result = 'Unknown';
 
   @override
   void initState() {
@@ -22,12 +24,24 @@ class _MyAppState extends State<MyApp> {
 
   // Platform messages are asynchronous, so we initialize in an async method.
   Future<void> initPlatformState() async {
-    String platformVersion;
+    const String key =
+        "dce60234d641f71f377ecafb5a566ce954d26c03fd3b5b23e9ed092ef42b5290";
+    const String iv = "c1f6fd873e14050697c168b3e9da5db2";
+    const String value = "01040000000300000002400000008B2E";
+    String result;
     // Platform messages may fail, so we use a try/catch PlatformException.
     try {
-      platformVersion = await Encryptions.platformVersion;
+      Uint8List encrypted = await Encryptions.aesEncryptInHex(key, iv, value);
+      Uint8List decrypted = await Encryptions.aesDecrypt(
+          Hex.decode(key), Hex.decode(iv), encrypted);
+      result = "Original:" +
+          value +
+          "\nEncrypted:" +
+          Hex.encode(encrypted) +
+          "\nDecrypted:" +
+          Hex.encode(decrypted);
     } on PlatformException {
-      platformVersion = 'Failed to get platform version.';
+      result = 'Failed to get platform version.';
     }
 
     // If the widget was removed from the tree while the asynchronous platform
@@ -36,7 +50,7 @@ class _MyAppState extends State<MyApp> {
     if (!mounted) return;
 
     setState(() {
-      _platformVersion = platformVersion;
+      _result = result;
     });
   }
 
@@ -48,7 +62,7 @@ class _MyAppState extends State<MyApp> {
           title: const Text('Plugin example app'),
         ),
         body: Center(
-          child: Text('Running on: $_platformVersion\n'),
+          child: Text('Result:\n$_result\n'),
         ),
       ),
     );
