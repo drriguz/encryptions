@@ -1,6 +1,7 @@
 package com.riguz.encryptions;
 
 import com.riguz.encryptions.invoker.AESCall;
+import com.riguz.encryptions.invoker.Argon2Call;
 
 import io.flutter.plugin.common.MethodChannel;
 import io.flutter.plugin.common.PluginRegistry.Registrar;
@@ -11,6 +12,7 @@ public class EncryptionsPlugin {
 
     static {
         executor.register(AESCall.class);
+        executor.register(Argon2Call.class);
     }
 
     public static void registerWith(Registrar registrar) {

@@ -1,4 +1,4 @@
-package com.riguz.encryptions.util;
+package com.riguz.encryptions.cipher;
 
 import android.util.Log;
 

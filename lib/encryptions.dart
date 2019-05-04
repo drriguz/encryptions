@@ -21,13 +21,21 @@ class Encryptions {
 
   static Future<Uint8List> aesEncryptInHex(
       String key, String iv, String value) async {
-    return aesEncrypt(Hex.decode(key), Hex.decode(iv),
-        Hex.decode(value));
+    return aesEncrypt(Hex.decode(key), Hex.decode(iv), Hex.decode(value));
   }
 
   static Future<Uint8List> aesDecryptInHex(
       String key, String iv, String value) async {
-    return aesDecrypt(Hex.decode(key), Hex.decode(iv),
-        Hex.decode(value));
+    return aesDecrypt(Hex.decode(key), Hex.decode(iv), Hex.decode(value));
+  }
+
+  static Future<Uint8List> argon2i(String password, String salt) async {
+    return await _channel
+        .invokeMethod("argon2i", {"password": password, "salt": salt});
+  }
+
+  static Future<Uint8List> argon2d(String password, String salt) async {
+    return await _channel
+        .invokeMethod("argon2d", {"password": password, "salt": salt});
   }
 }

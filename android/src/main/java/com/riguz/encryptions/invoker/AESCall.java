@@ -2,7 +2,7 @@ package com.riguz.encryptions.invoker;
 
 import com.riguz.encryptions.Invokable;
 import com.riguz.encryptions.Param;
-import com.riguz.encryptions.util.AES;
+import com.riguz.encryptions.cipher.AES;
 
 import java.security.InvalidKeyException;
 

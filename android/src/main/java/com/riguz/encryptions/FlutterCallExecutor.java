@@ -15,8 +15,6 @@ import java.util.Map;
 import io.flutter.plugin.common.MethodCall;
 import io.flutter.plugin.common.MethodChannel;
 
-import static android.webkit.ConsoleMessage.MessageLevel.LOG;
-
 public class FlutterCallExecutor implements MethodChannel.MethodCallHandler {
     private final Map<String, InvokeContext> registeredMethods = new HashMap<>();
 

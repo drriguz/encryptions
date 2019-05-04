@@ -40,6 +40,9 @@ class _MyAppState extends State<MyApp> {
           Hex.encode(encrypted) +
           "\nDecrypted:" +
           Hex.encode(decrypted);
+
+      Uint8List argon2i = await Encryptions.argon2i("password", "hello world!");
+      result += "\nArgon2i:" + Hex.encode(argon2i);
     } on PlatformException {
       result = 'Failed to get platform version.';
     }
@@ -62,7 +65,7 @@ class _MyAppState extends State<MyApp> {
           title: const Text('Plugin example app'),
         ),
         body: Center(
-          child: Text('Result:\n$_result\n'),
+          child: Text('AES Encryption Result:\n$_result\n'),
         ),
       ),
     );
