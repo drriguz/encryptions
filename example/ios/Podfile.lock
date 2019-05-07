@@ -1,0 +1,22 @@
+PODS:
+  - encryptions (0.0.1):
+    - Flutter
+  - Flutter (1.0.0)
+
+DEPENDENCIES:
+  - encryptions (from `.symlinks/plugins/encryptions/ios`)
+  - Flutter (from `.symlinks/flutter/ios-release`)
+
+EXTERNAL SOURCES:
+  encryptions:
+    :path: ".symlinks/plugins/encryptions/ios"
+  Flutter:
+    :path: ".symlinks/flutter/ios-release"
+
+SPEC CHECKSUMS:
+  encryptions: a374d8610fbe88a7f00a14e059ff1df3f100d9e2
+  Flutter: 58dd7d1b27887414a370fcccb9e645c08ffd7a6a
+
+PODFILE CHECKSUM: ebd43b443038e611b86ede96e613bd6033c49497
+
+COCOAPODS: 1.6.1
