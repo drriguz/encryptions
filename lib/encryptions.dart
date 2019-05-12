@@ -3,6 +3,7 @@ import 'dart:typed_data';
 
 import 'package:encryptions/hex.dart';
 import 'package:flutter/services.dart';
+import 'dart:convert' show utf8;
 
 class Encryptions {
   static const MethodChannel _channel = const MethodChannel('encryptions');
@@ -30,12 +31,16 @@ class Encryptions {
   }
 
   static Future<Uint8List> argon2i(String password, String salt) async {
-    return await _channel
-        .invokeMethod("argon2i", {"password": password, "salt": salt});
+    return await _channel.invokeMethod("argon2i", {
+      "password": Uint8List.fromList(utf8.encode(password)),
+      "salt": Uint8List.fromList(utf8.encode(salt))
+    });
   }
 
   static Future<Uint8List> argon2d(String password, String salt) async {
-    return await _channel
-        .invokeMethod("argon2d", {"password": password, "salt": salt});
+    return await _channel.invokeMethod("argon2d", {
+      "password": Uint8List.fromList(utf8.encode(password)),
+      "salt": Uint8List.fromList(utf8.encode(salt))
+    });
   }
 }

@@ -14,6 +14,7 @@
 		3B80C3951E831B6300D905FE /* App.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3B80C3931E831B6300D905FE /* App.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		74858FAF1ED2DC5600515810 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74858FAE1ED2DC5600515810 /* AppDelegate.swift */; };
 		8F7C9C4A22826225009B1E73 /* cipher_test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F7C9C4922826225009B1E73 /* cipher_test.swift */; };
+		8F7C9C82228727F8009B1E73 /* argon2_test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F7C9C81228727F8009B1E73 /* argon2_test.swift */; };
 		9705A1C61CF904A100538489 /* Flutter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9740EEBA1CF902C7004384FC /* Flutter.framework */; };
 		9705A1C71CF904A300538489 /* Flutter.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9740EEBA1CF902C7004384FC /* Flutter.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		9740EEB41CF90195004384FC /* Debug.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 9740EEB21CF90195004384FC /* Debug.xcconfig */; };
@@ -60,6 +61,7 @@
 		8F7C9C4722826225009B1E73 /* cipher.test.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = cipher.test.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F7C9C4922826225009B1E73 /* cipher_test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cipher_test.swift; sourceTree = "<group>"; };
 		8F7C9C4B22826225009B1E73 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8F7C9C81228727F8009B1E73 /* argon2_test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = argon2_test.swift; sourceTree = "<group>"; };
 		9740EEB21CF90195004384FC /* Debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = Debug.xcconfig; path = Flutter/Debug.xcconfig; sourceTree = "<group>"; };
 		9740EEB31CF90195004384FC /* Generated.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = Generated.xcconfig; path = Flutter/Generated.xcconfig; sourceTree = "<group>"; };
 		9740EEBA1CF902C7004384FC /* Flutter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Flutter.framework; path = Flutter/Flutter.framework; sourceTree = "<group>"; };
@@ -96,6 +98,7 @@
 		8F7C9C4822826225009B1E73 /* cipher.test */ = {
 			isa = PBXGroup;
 			children = (
+				8F7C9C81228727F8009B1E73 /* argon2_test.swift */,
 				8F7C9C4922826225009B1E73 /* cipher_test.swift */,
 				8F7C9C4B22826225009B1E73 /* Info.plist */,
 			);
@@ -366,6 +369,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8F7C9C82228727F8009B1E73 /* argon2_test.swift in Sources */,
 				8F7C9C4A22826225009B1E73 /* cipher_test.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
