@@ -2,21 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f7ed2c63-f2d4-466f-a015-45286bd0d64c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/example/ios/.symlinks/plugins/encryptions/example/ios/cipher.test/argon2_test.swift" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/example/ios/.symlinks/plugins/encryptions/ios/Classes/Argon2.swift" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/example/ios/cipher.test/argon2_test.swift" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ios/Classes/Argon2.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/ios/.symlinks/plugins/encryptions/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/example/ios/.symlinks/plugins/encryptions/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/ios/.symlinks/plugins/encryptions/example/ios/Runner.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/example/ios/.symlinks/plugins/encryptions/example/ios/Runner.xcodeproj/project.pbxproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/ios/.symlinks/plugins/encryptions/example/ios/Runner/Runner-Bridging-Header.h" beforeDir="false" afterPath="$PROJECT_DIR$/example/ios/.symlinks/plugins/encryptions/example/ios/Runner/Runner-Bridging-Header.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/ios/.symlinks/plugins/encryptions/example/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/example/ios/.symlinks/plugins/encryptions/example/lib/main.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/ios/.symlinks/plugins/encryptions/ios/Classes/SwiftEncryptionsPlugin.swift" beforeDir="false" afterPath="$PROJECT_DIR$/example/ios/.symlinks/plugins/encryptions/ios/Classes/SwiftEncryptionsPlugin.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/ios/Runner.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/example/ios/Runner.xcodeproj/project.pbxproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/ios/Runner/Runner-Bridging-Header.h" beforeDir="false" afterPath="$PROJECT_DIR$/example/ios/Runner/Runner-Bridging-Header.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/src/main/cpp/argon2_binding.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/android/src/main/cpp/argon2_binding.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/src/main/cpp/argon2_binding.h" beforeDir="false" afterPath="$PROJECT_DIR$/android/src/main/cpp/argon2_binding.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/src/main/java/com/riguz/encryptions/cipher/Argon2.java" beforeDir="false" afterPath="$PROJECT_DIR$/android/src/main/java/com/riguz/encryptions/cipher/Argon2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/src/main/java/com/riguz/encryptions/invoker/Argon2Call.java" beforeDir="false" afterPath="$PROJECT_DIR$/android/src/main/java/com/riguz/encryptions/invoker/Argon2Call.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/ios/.symlinks/plugins/encryptions/android/src/main/cpp/argon2_binding.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/example/ios/.symlinks/plugins/encryptions/android/src/main/cpp/argon2_binding.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/ios/.symlinks/plugins/encryptions/android/src/main/cpp/argon2_binding.h" beforeDir="false" afterPath="$PROJECT_DIR$/example/ios/.symlinks/plugins/encryptions/android/src/main/cpp/argon2_binding.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/ios/.symlinks/plugins/encryptions/android/src/main/java/com/riguz/encryptions/cipher/Argon2.java" beforeDir="false" afterPath="$PROJECT_DIR$/example/ios/.symlinks/plugins/encryptions/android/src/main/java/com/riguz/encryptions/cipher/Argon2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/ios/.symlinks/plugins/encryptions/android/src/main/java/com/riguz/encryptions/invoker/Argon2Call.java" beforeDir="false" afterPath="$PROJECT_DIR$/example/ios/.symlinks/plugins/encryptions/android/src/main/java/com/riguz/encryptions/invoker/Argon2Call.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/example/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/example/lib/main.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/Classes/SwiftEncryptionsPlugin.swift" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Classes/SwiftEncryptionsPlugin.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/encryptions.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/encryptions.dart" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.dart_tool/" />
     <ignored path="$PROJECT_DIR$/.pub/" />
@@ -84,8 +78,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/example/lib/main.dart">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="395">
-              <caret line="88" column="25" selection-start-line="88" selection-start-column="25" selection-end-line="88" selection-end-column="25" />
+            <state relative-caret-position="216">
+              <caret line="66" column="16" selection-start-line="66" selection-start-column="16" selection-end-line="66" selection-end-column="16" />
               <folding>
                 <element signature="e#0#38#0" expanded="true" />
               </folding>
@@ -459,8 +453,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/example/lib/main.dart">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="395">
-          <caret line="88" column="25" selection-start-line="88" selection-start-column="25" selection-end-line="88" selection-end-column="25" />
+        <state relative-caret-position="216">
+          <caret line="66" column="16" selection-start-line="66" selection-start-column="16" selection-end-line="66" selection-end-column="16" />
           <folding>
             <element signature="e#0#38#0" expanded="true" />
           </folding>

@@ -64,7 +64,7 @@ class _MyAppState extends State<MyApp> {
         "1fe7d8ae9f8946a5170aa6b96e8eea69b5f9351cbe457c4776e01f0b72a1e40e";
     final success = expected == Hex.encode(hashed);
 
-    print(Hex.encode(hashed));
+    print("#####" + Hex.encode(hashed));
     return "argon2i:" + (success ? "✔ " : "✗");
   }
 
