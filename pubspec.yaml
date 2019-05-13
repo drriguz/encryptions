@@ -1,8 +1,8 @@
 name: encryptions
-description: A new flutter plugin project.
+description: A flutter plugin for AES128/256 and argon2 kdf.
 version: 0.0.1
-author:
-homepage:
+author: Riguz Lee <dr@riguz.com>
+homepage: https://github.com/soleverlee/encryptions
 
 environment:
   sdk: ">=2.1.0 <3.0.0"
@@ -10,7 +10,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  convert: any
+  convert: ^2.1.1
 
 dev_dependencies:
   flutter_test:
