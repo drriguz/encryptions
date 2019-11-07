@@ -30,22 +30,23 @@ class AES {
     return AES._(BlockCipherMode.CBC, key, null, padding);
   }
 
-  Map<String, dynamic> createAESArguments() => {
+  Map<String, dynamic> createAESArguments(Uint8List value) => {
         "mode": _mode.toString().split('.').last,
         "padding": _padding.toString().split('.').last,
         "key": _key,
         "iv": _iv,
+        "value": value,
       };
 
   Future<Uint8List> encrypt(final Uint8List bytes) async {
     ArgumentError.checkNotNull(bytes);
 
-    return _platform.invokeMethod("aesEncrypt", createAESArguments());
+    return _platform.invokeMethod("aesEncrypt", createAESArguments(bytes));
   }
 
   Future<Uint8List> decrypt(final Uint8List bytes) async {
     ArgumentError.checkNotNull(bytes);
 
-    return _platform.invokeMethod("aesDecrypt", createAESArguments());
+    return _platform.invokeMethod("aesDecrypt", createAESArguments(bytes));
   }
 }
