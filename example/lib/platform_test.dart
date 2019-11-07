@@ -45,7 +45,7 @@ final List<PlatformTest> tests = [
     Uint8List encrypted = await aes.encrypt(plain1);
     Uint8List decrypted = await aes.decrypt(encrypted);
     return hex.encode(encrypted) ==
-            "64fb88a3f1a4d75d05c5508b2f2d48936167b6d75caf4867cca5db8dcf97af04" &&
+            "64fb88a3f1a4d75d05c5508b2f2d48933740cf89850b682d8082ca17223a8f0f" &&
         hex.encode(decrypted) == hex.encode(plain1);
   }),
 
