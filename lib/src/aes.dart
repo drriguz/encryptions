@@ -1,7 +1,10 @@
 import 'dart:typed_data';
 
+import 'package:convert/convert.dart';
 import 'package:encryptions/src/cipher_options.dart';
 import 'package:flutter/services.dart';
+
+final Uint8List _emptyIv = hex.decode("00000000000000000000000000000000");
 
 class AES {
   static const MethodChannel _platform = const MethodChannel('encryptions_aes');
@@ -13,13 +16,15 @@ class AES {
 
   AES._(this._mode, this._key, this._iv, this._padding) {
     ArgumentError.checkNotNull(this._key);
-    ArgumentError.checkNotNull(this._iv);
+    if (this._mode == BlockCipherMode.CBC) {
+      ArgumentError.checkNotNull(this._iv);
+      if (this._iv.length != 16)
+        throw ArgumentError(
+            "Iv size should be 16 bytes: actual is ${_iv.length}");
+    }
     if (this._key.length != 16 && this._key.length != 32)
       throw ArgumentError(
           "Key size should be 16 bytes(AES-128) or 32 bytes(AES-256): actual is ${_key.length}");
-    if (this._iv.length != 16)
-      throw ArgumentError(
-          "Iv size should be 16 bytes: actual is ${_iv.length}");
   }
 
   factory AES.ofCBC(Uint8List key, Uint8List iv, PaddingScheme padding) {
@@ -27,7 +32,7 @@ class AES {
   }
 
   factory AES.ofECB(Uint8List key, PaddingScheme padding) {
-    return AES._(BlockCipherMode.CBC, key, null, padding);
+    return AES._(BlockCipherMode.ECB, key, _emptyIv, padding);
   }
 
   Map<String, dynamic> createAESArguments(Uint8List value) => {

@@ -11,8 +11,10 @@ struct AES {
         guard key.count == kCCKeySizeAES256 || key.count == kCCKeySizeAES128 else {
             throw Error.badKeyLength
         }
-        guard (mode == "CBC" && iv.count == kCCBlockSizeAES128) else {
-            throw Error.badInputVectorLength
+        if(mode == "CBC"){
+            guard (iv.count == kCCBlockSizeAES128) else {
+                throw Error.badInputVectorLength
+            }
         }
         
         self.key = key
@@ -37,22 +39,29 @@ struct AES {
         return try crypt(data: raw, option: CCOperation(kCCDecrypt))
     }
     
-    func getPaddingOption() throws -> Int {
+    func getCCOptions() throws -> Int {
+        var options:Int;
         switch(padding) {
         case "NoPadding":
-            return ccNoPadding;
+            options = ccNoPadding;
+            break;
         case "PKCS5Padding":
-            return kCCOptionPKCS7Padding;
+            options = kCCOptionPKCS7Padding;
+            break;
         default:
             throw Error.unknownPadding;
         }
+        if(mode == "ECB"){
+            options += kCCOptionECBMode;
+        }
+        return options;
     }
     
     func crypt(data: Data, option: CCOperation) throws -> Data {
         var outputBytes  = [UInt8](repeating: 0, count: data.count + kCCBlockSizeAES128);
         
         var outputLength = Int(0)
-        let paddingOption = try getPaddingOption();
+        let paddingOption = try getCCOptions();
         
         let status = data.withUnsafeBytes { dataBytes in
             iv.withUnsafeBytes { ivBytes in
@@ -60,7 +69,7 @@ struct AES {
                     CCCrypt(
                         option,                       // encrypt | decrypt
                         CCAlgorithm(kCCAlgorithmAES), // aes
-                        CCOptions(paddingOption),  // padding
+                        CCOptions(paddingOption),     // padding
                         keyBytes,                     // key
                         key.count,                    // 128 | 256
                         ivBytes,                      // iv

@@ -21,8 +21,9 @@ public class SwiftEncryptionsPlugin: NSObject, FlutterPlugin {
             do {
                 let cipher = try handleAes(key: key.data, iv: iv.data, value: value.data, mode: mode, padding: padding, method: call.method);
                 result(cipher);
-            } catch {
-                let error = FlutterError(code: "500", message:error.localizedDescription, details: nil)
+            } catch let err as NSError{
+            
+                let error = FlutterError(code: "500", message:err.localizedDescription, details: err.description)
                 result(error)
             };
         default:

@@ -105,7 +105,7 @@ class _MyAppState extends State<MyApp> {
         success = await t.executor();
       } catch (err, stack) {
         print(err);
-        //print(stack);
+        print(stack);
         success = false;
       }
       reports.add(Report(t.name, success));
