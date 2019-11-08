@@ -40,25 +40,27 @@ class _MyAppState extends State<MyApp> {
   }
 
   Widget _renderTable(List<TableRow> rows) {
-    return Table(
-      border: new TableBorder.all(width: 1.0, color: Colors.grey),
-      children: <TableRow>[
-        TableRow(children: <Widget>[
-          TableCell(
-            child: Padding(
-              padding: padding,
-              child: Text('Test', style: headerStyle),
+    return SingleChildScrollView(
+      child: Table(
+        border: new TableBorder.all(width: 1.0, color: Colors.grey),
+        children: <TableRow>[
+          TableRow(children: <Widget>[
+            TableCell(
+              child: Padding(
+                padding: padding,
+                child: Text('Test', style: headerStyle),
+              ),
             ),
-          ),
-          TableCell(
-            child: Padding(
-              padding: padding,
-              child: Text('Result', style: headerStyle),
+            TableCell(
+              child: Padding(
+                padding: padding,
+                child: Text('Result', style: headerStyle),
+              ),
             ),
-          ),
-        ]),
-        ...rows
-      ],
+          ]),
+          ...rows
+        ],
+      ),
     );
   }
 
