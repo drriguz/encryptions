@@ -1,6 +1,6 @@
 name: encryptions
-description: A plugin for Argon2/AES
-version: 0.0.1
+description: A plugin for using native Argon2/AES in Android and IOS
+version: 0.0.2
 author: Riguz Lee
 homepage: https://github.com/soleverlee/encryptions
 

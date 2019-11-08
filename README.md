@@ -2,6 +2,7 @@
 
 A plugin for using native AES /Argon2 algorithms in Android/IOS.
 
+![Test report](report-ios.png)
 
 ## Getting Started
 
