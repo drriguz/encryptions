@@ -1,7 +1,7 @@
 name: encryptions
 description: A plugin for using native Argon2/AES in Android and IOS
 version: 0.0.2
-author: Riguz Lee
+author: Riguz Lee<dr@riguz.com>
 homepage: https://github.com/soleverlee/encryptions
 
 environment:
