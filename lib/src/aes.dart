@@ -7,7 +7,7 @@ import 'package:flutter/services.dart';
 final Uint8List _emptyIv = hex.decode("00000000000000000000000000000000");
 
 class AES {
-  static const MethodChannel _platform = const MethodChannel('encryptions_aes');
+  static const MethodChannel _platform = const MethodChannel('encryptions');
 
   final BlockCipherMode _mode;
   final Uint8List _key;

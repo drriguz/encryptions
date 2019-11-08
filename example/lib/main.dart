@@ -63,7 +63,7 @@ class _MyAppState extends State<MyApp> {
   }
 
   TableRow _createRow(Report report) {
-    return TableRow(children: <Widget>[
+    return TableRow(key: ObjectKey(report.name), children: <Widget>[
       TableCell(
         child: Padding(
           padding: padding,
@@ -88,10 +88,17 @@ class _MyAppState extends State<MyApp> {
       builder: (_, snapshot) {
         switch (snapshot.connectionState) {
           case ConnectionState.done:
+            if (snapshot.hasError) {
+              print('got error! ${snapshot.error}');
+              return Text("Error:${snapshot.error}");
+            }
+            print("Done! ${snapshot.data}");
             return _renderTable(
                 snapshot.data.map((report) => _createRow(report)).toList());
           default:
-            return Text("Testing...");
+            return Center(
+              child: Text("Testing..."),
+            );
         }
       },
     );
@@ -99,7 +106,8 @@ class _MyAppState extends State<MyApp> {
 
   Future<List<Report>> test() async {
     List<Report> reports = [];
-    tests.forEach((t) async {
+    for (int i = 0; i < tests.length; i++) {
+      PlatformTest t = tests[i];
       bool success;
       try {
         success = await t.executor();
@@ -109,7 +117,7 @@ class _MyAppState extends State<MyApp> {
         success = false;
       }
       reports.add(Report(t.name, success));
-    });
+    }
     return reports;
   }
 }

@@ -3,8 +3,7 @@ import 'dart:typed_data';
 import 'package:flutter/services.dart';
 
 class Argon2 {
-  static const MethodChannel _platform =
-      const MethodChannel('encryptions_argon2');
+  static const MethodChannel _platform = const MethodChannel('encryptions');
 
   final int iterations;
   final int memory; // KB
@@ -19,21 +18,23 @@ class Argon2 {
   });
 
   argon2i(Uint8List password, Uint8List salt) {
-    return _platform.invokeMethod("argon2i", _createParams());
+    return _platform.invokeMethod("argon2i", _createParams(password, salt));
   }
 
   argon2d(Uint8List password, Uint8List salt) {
-    return _platform.invokeMethod("argon2d", _createParams());
+    return _platform.invokeMethod("argon2d", _createParams(password, salt));
   }
 
-  argon2di(Uint8List password, Uint8List salt) {
-    return _platform.invokeMethod("argon2di", _createParams());
+  argon2id(Uint8List password, Uint8List salt) {
+    return _platform.invokeMethod("argon2id", _createParams(password, salt));
   }
 
-  Map<String, dynamic> _createParams() => {
+  Map<String, dynamic> _createParams(Uint8List password, Uint8List salt) => {
         "iterations": iterations,
         "memory": memory,
         "parallelism": parallelism,
         "hashLength": hashLength,
+        "password": password,
+        "salt": salt,
       };
 }

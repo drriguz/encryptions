@@ -136,14 +136,20 @@ final List<PlatformTest> tests = [
   }),
   PlatformTest("argon2d", () async {
     Argon2 argon2 = Argon2();
-    Uint8List hash = await argon2.argon2i(password, salt);
+    Uint8List hash = await argon2.argon2d(password, salt);
     return hex.encode(hash) ==
         "251c68a5591a838647b5afa7d1379cc63690daffcedb1e725528789014064fab";
   }),
-  PlatformTest("argon2di", () async {
+  PlatformTest("argon2id", () async {
     Argon2 argon2 = Argon2();
-    Uint8List hash = await argon2.argon2i(password, salt);
+    Uint8List hash = await argon2.argon2id(password, salt);
     return hex.encode(hash) ==
         "f4d4a3ae373989af91e2e396e28762fe05417bd1d5d9e44d3afdc0e71497c902";
+  }),
+  PlatformTest("argon2i/custom", () async {
+    Argon2 argon2 = Argon2(iterations: 16, hashLength: 64, memory: 256, parallelism: 2);
+    Uint8List hash = await argon2.argon2i(password, salt);
+    return hex.encode(hash) ==
+        "dc530394aaa947ba00a24c2edd46e72b78af2561f9b823e6648f6949229593929862a23e2cbbaa1e48918e9dd425c2306d09898f03f5f29a3429a86e07b4e9d6";
   }),
 ];
