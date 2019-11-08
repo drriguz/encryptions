@@ -31,4 +31,14 @@ android {
     lintOptions {
         disable 'InvalidPackage'
     }
+
+    dependencies {
+        implementation 'commons-codec:commons-codec:1.12'
+    }
+
+    externalNativeBuild {
+        cmake {
+            path "src/main/cpp/CMakeLists.txt"
+        }
+    }
 }
