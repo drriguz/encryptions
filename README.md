@@ -1,4 +1,5 @@
 # encryptions
+[![pub](https://img.shields.io/pub/v/encryptions)](https://pub.dev/packages/encryptions)
 
 A plugin for using native AES /Argon2 algorithms in Android/IOS.
 
