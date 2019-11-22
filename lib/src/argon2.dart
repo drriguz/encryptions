@@ -17,15 +17,15 @@ class Argon2 {
     this.hashLength = 32,
   });
 
-  argon2i(Uint8List password, Uint8List salt) {
+  Future<Uint8List> argon2i(Uint8List password, Uint8List salt) async{
     return _platform.invokeMethod("argon2i", _createParams(password, salt));
   }
 
-  argon2d(Uint8List password, Uint8List salt) {
+  Future<Uint8List> argon2d(Uint8List password, Uint8List salt) async{
     return _platform.invokeMethod("argon2d", _createParams(password, salt));
   }
 
-  argon2id(Uint8List password, Uint8List salt) {
+  Future<Uint8List> argon2id(Uint8List password, Uint8List salt) async{
     return _platform.invokeMethod("argon2id", _createParams(password, salt));
   }
 

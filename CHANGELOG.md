@@ -11,3 +11,8 @@ Notice: version 0.0.1 is deprecated, consider using the latest version.
 * Full support for argon2i, argon2d, argon2id
 * Now it's able to configure custom argon2 parameters
 * Added a test report UI in example, for which you can validate the result in real devices
+
+## 0.0.3  (Testing)
+
+* Implicitly declare api return value type 
+* Using separate thread to run android native code, thus it might help to un-block the ui thread
