@@ -18,8 +18,7 @@ class _MyAppState extends State<MyApp> {
     reports = test();
   }
 
-  static const headerStyle =
-      TextStyle(fontSize: 16, fontWeight: FontWeight.bold);
+  static const headerStyle = TextStyle(fontSize: 16, fontWeight: FontWeight.bold);
   static const successStyle = TextStyle(fontSize: 16, color: Colors.green);
   static const errorStyle = TextStyle(fontSize: 16, color: Colors.red);
   static const padding = EdgeInsets.all(5.0);
@@ -40,26 +39,27 @@ class _MyAppState extends State<MyApp> {
   }
 
   Widget _renderTable(List<TableRow> rows) {
+    rows.addAll(<TableRow>[
+      TableRow(children: <Widget>[
+        TableCell(
+          child: Padding(
+            padding: padding,
+            child: Text('Test', style: headerStyle),
+          ),
+        ),
+        TableCell(
+          child: Padding(
+            padding: padding,
+            child: Text('Result', style: headerStyle),
+          ),
+        ),
+      ]),
+    ]);
+
     return SingleChildScrollView(
       child: Table(
         border: new TableBorder.all(width: 1.0, color: Colors.grey),
-        children: <TableRow>[
-          TableRow(children: <Widget>[
-            TableCell(
-              child: Padding(
-                padding: padding,
-                child: Text('Test', style: headerStyle),
-              ),
-            ),
-            TableCell(
-              child: Padding(
-                padding: padding,
-                child: Text('Result', style: headerStyle),
-              ),
-            ),
-          ]),
-          ...rows
-        ],
+        children: rows,
       ),
     );
   }
@@ -95,8 +95,7 @@ class _MyAppState extends State<MyApp> {
               return Text("Error:${snapshot.error}");
             }
             print("Done! ${snapshot.data}");
-            return _renderTable(
-                snapshot.data.map((report) => _createRow(report)).toList());
+            return _renderTable(snapshot.data.map((report) => _createRow(report)).toList());
           default:
             return Center(
               child: Text("Testing..."),

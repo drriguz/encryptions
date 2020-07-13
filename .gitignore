@@ -10,3 +10,6 @@ build/
 *.ipr
 *.iws
 .idea/
+
+.flutter-plugins-dependencies
+Flutter.podspec
