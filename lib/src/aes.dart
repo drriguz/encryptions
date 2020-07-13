@@ -18,13 +18,10 @@ class AES {
     ArgumentError.checkNotNull(this._key);
     if (this._mode == BlockCipherMode.CBC) {
       ArgumentError.checkNotNull(this._iv);
-      if (this._iv.length != 16)
-        throw ArgumentError(
-            "Iv size should be 16 bytes: actual is ${_iv.length}");
+      if (this._iv.length != 16) throw ArgumentError("Iv size should be 16 bytes: actual is ${_iv.length}");
     }
     if (this._key.length != 16 && this._key.length != 32)
-      throw ArgumentError(
-          "Key size should be 16 bytes(AES-128) or 32 bytes(AES-256): actual is ${_key.length}");
+      throw ArgumentError("Key size should be 16 bytes(AES-128) or 32 bytes(AES-256): actual is ${_key.length}");
   }
 
   factory AES.ofCBC(Uint8List key, Uint8List iv, PaddingScheme padding) {
@@ -45,7 +42,8 @@ class AES {
 
   Future<Uint8List> encrypt(final Uint8List bytes) async {
     ArgumentError.checkNotNull(bytes);
-
+    if (_padding == PaddingScheme.NoPadding && bytes.lengthInBytes % 16 != 0)
+      throw ArgumentError("Bytes length must be multiple of block length");
     return _platform.invokeMethod("aesEncrypt", createAESArguments(bytes));
   }
 
