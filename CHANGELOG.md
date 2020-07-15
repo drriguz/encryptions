@@ -12,7 +12,18 @@ Notice: version 0.0.1 is deprecated, consider using the latest version.
 * Now it's able to configure custom argon2 parameters
 * Added a test report UI in example, for which you can validate the result in real devices
 
+# 0.0.3 (Deprecated)
+
+* Implicitly declare api return value type
+* Using separate thread to run android native code, thus it might help to un-block the ui thread
+
+Notice: the source code of this version is not available... Somehow I did not commit that.
+
 ## 0.0.2+1
 
 * Added blocking size check when using AES with NoPadding scheme
 * Removed annoying log in Android side
+
+## 0.0.4
+
+* No changes but just bump version to replace 0.0.3
