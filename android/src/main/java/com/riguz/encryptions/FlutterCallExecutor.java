@@ -58,7 +58,6 @@ public class FlutterCallExecutor implements MethodChannel.MethodCallHandler {
                 params.add(methodCall.argument(paramName));
             }
             final Object value = context.getInvokableMethod().invoke(handlerInstance, params.toArray());
-            Log.d("FLUtTER_CALL", "result:" + new String(Hex.encodeHex((byte[])value)));
             result.success(value);
         } catch (Exception e) {
             e.printStackTrace();
