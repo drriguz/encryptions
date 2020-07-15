@@ -27,3 +27,8 @@ Notice: the source code of this version is not available... Somehow I did not co
 ## 0.0.4
 
 * No changes but just bump version to replace 0.0.3
+
+## 0.0.4+2
+
+* Fixed pubspec.yaml accroding to https://flutter.dev/docs/development/packages-and-plugins/developing-packages#plugin
+* Only support for flutter ^1.10.0
