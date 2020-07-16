@@ -1,4 +1,5 @@
-import 'package:encryptions_example/platform_test.dart';
+import 'package:encryptions_example/test_case.dart';
+import 'package:encryptions_example/test_case_config.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 
@@ -18,7 +19,6 @@ class _MyAppState extends State<MyApp> {
     reports = test();
   }
 
-  static const headerStyle = TextStyle(fontSize: 16, fontWeight: FontWeight.bold);
   static const successStyle = TextStyle(fontSize: 16, color: Colors.green);
   static const errorStyle = TextStyle(fontSize: 16, color: Colors.red);
   static const padding = EdgeInsets.all(5.0);
@@ -39,23 +39,6 @@ class _MyAppState extends State<MyApp> {
   }
 
   Widget _renderTable(List<TableRow> rows) {
-    rows.addAll(<TableRow>[
-      TableRow(children: <Widget>[
-        TableCell(
-          child: Padding(
-            padding: padding,
-            child: Text('Test', style: headerStyle),
-          ),
-        ),
-        TableCell(
-          child: Padding(
-            padding: padding,
-            child: Text('Result', style: headerStyle),
-          ),
-        ),
-      ]),
-    ]);
-
     return SingleChildScrollView(
       child: Table(
         border: new TableBorder.all(width: 1.0, color: Colors.grey),
@@ -69,14 +52,8 @@ class _MyAppState extends State<MyApp> {
       TableCell(
         child: Padding(
           padding: padding,
-          child: Text(report.name),
-        ),
-      ),
-      TableCell(
-        child: Padding(
-          padding: padding,
           child: Text(
-            "${report.success}",
+            "${report.name}",
             style: report.success ? successStyle : errorStyle,
           ),
         ),
@@ -107,11 +84,11 @@ class _MyAppState extends State<MyApp> {
 
   Future<List<Report>> test() async {
     List<Report> reports = [];
-    for (int i = 0; i < tests.length; i++) {
-      PlatformTest t = tests[i];
+    for (int i = 0; i < testCases.length; i++) {
+      TestCase t = testCases[i];
       bool success;
       try {
-        success = await t.executor();
+        success = await t.execute();
       } catch (err, stack) {
         print(err);
         print(stack);
