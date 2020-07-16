@@ -32,3 +32,8 @@ Notice: the source code of this version is not available... Somehow I did not co
 
 * Fixed pubspec.yaml accroding to https://flutter.dev/docs/development/packages-and-plugins/developing-packages#plugin
 * Only support for flutter ^1.10.0
+
+## 0.0.5
+
+* **NEW** `*Isloated` APIs are now available for running in separated isolate, since argon2 and AES may take long time to finish, which will then block the UI. Old APIs are still available.
+* Refactor examples
