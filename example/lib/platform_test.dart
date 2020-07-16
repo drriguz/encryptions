@@ -30,8 +30,8 @@ Uint8List salt = utf8.encode("helloworld");
 final List<PlatformTest> tests = [
   PlatformTest("AES/128/CBC/NoPadding", () async {
     AES aes = AES.ofCBC(key128, iv, PaddingScheme.NoPadding);
-    Uint8List encrypted = await aes.encrypt(plain);
-    Uint8List decrypted = await aes.decrypt(encrypted);
+    Uint8List encrypted = await aes.encryptIsolated(plain);
+    Uint8List decrypted = await aes.decryptIsolated(encrypted);
     return (hex.encode(encrypted) == "64fb88a3f1a4d75d05c5508b2f2d4893") &&
         (hex.encode(decrypted) == hex.encode(plain));
   }),
