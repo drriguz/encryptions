@@ -1,8 +1,8 @@
 package com.riguz.encryptions;
 
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
-
-import org.apache.commons.codec.binary.Hex;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Constructor;
@@ -17,6 +17,7 @@ import io.flutter.plugin.common.MethodChannel;
 
 public class FlutterCallExecutor implements MethodChannel.MethodCallHandler {
     private final Map<String, InvokeContext> registeredMethods = new HashMap<>();
+    private final Handler uiThreadHandler = new Handler(Looper.getMainLooper());
 
     public void register(Class<?> handlerClass) {
         final Constructor<?> constructor;
@@ -39,13 +40,23 @@ public class FlutterCallExecutor implements MethodChannel.MethodCallHandler {
     }
 
     @Override
-    public void onMethodCall(MethodCall methodCall, MethodChannel.Result result) {
+    public void onMethodCall(final MethodCall methodCall, final MethodChannel.Result result) {
         final InvokeContext context = registeredMethods.get(methodCall.method);
         if (context == null) {
             result.notImplemented();
         } else {
-            execute(context, methodCall, result);
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    execute(context, methodCall, result);
+                }
+            }).start();
+
         }
+    }
+
+    private void jumpToMainThread(Runnable resultSetter) {
+        uiThreadHandler.post(resultSetter);
     }
 
     private void execute(final InvokeContext context,
@@ -58,10 +69,20 @@ public class FlutterCallExecutor implements MethodChannel.MethodCallHandler {
                 params.add(methodCall.argument(paramName));
             }
             final Object value = context.getInvokableMethod().invoke(handlerInstance, params.toArray());
-            result.success(value);
-        } catch (Exception e) {
-            e.printStackTrace();
-            result.error("FLUTTER_CALL_ERROR", "UNKNOWN", e.getMessage());
+            jumpToMainThread(new Runnable() {
+                @Override
+                public void run() {
+                    result.success(value);
+                }
+            });
+        } catch (final Exception e) {
+            Log.e("FLUTTER_CALL", e.getMessage());
+            jumpToMainThread(new Runnable() {
+                @Override
+                public void run() {
+                    result.error("FLUTTER_CALL_ERROR", "UNKNOWN", e.getMessage());
+                }
+            });
         }
     }
 

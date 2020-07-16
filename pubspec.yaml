@@ -1,6 +1,6 @@
 name: encryptions
 description: A plugin for using native Argon2/AES in Android and IOS
-version: 0.0.5
+version: 0.0.6
 homepage: https://github.com/drriguz/encryptions
 
 environment:
@@ -11,7 +11,6 @@ dependencies:
   flutter:
     sdk: flutter
   convert: ^2.1.1
-  flutter_isolate: ^1.0.0+14
 
 dev_dependencies:
   flutter_test:

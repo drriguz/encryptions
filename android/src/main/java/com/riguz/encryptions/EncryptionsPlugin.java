@@ -6,6 +6,12 @@ import com.riguz.encryptions.invoker.Argon2Call;
 import io.flutter.plugin.common.MethodChannel;
 import io.flutter.plugin.common.PluginRegistry.Registrar;
 
+/*
+    https://github.com/flutter/flutter-intellij/issues/3153
+    Choose the menu item Flutter > Open Android module in Android Studio. That will open a new
+    window that will build the Android project with Gradle and support editing Java/Kotlin files.
+ */
+
 public class EncryptionsPlugin {
     private static final FlutterCallExecutor executor = new FlutterCallExecutor();
 

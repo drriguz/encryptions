@@ -1,7 +1,13 @@
 import Flutter
 import UIKit
 
+/*
+    https://github.com/flutter/flutter/issues/22024
+    reference: https://github.com/rbcprolabs/packages.flutter/blob/master/packages/native_pdf_renderer/ios/Classes/SwiftNativePDFRendererPlugin.swift#L122
+ */
 public class SwiftEncryptionsPlugin: NSObject, FlutterPlugin {
+    let dispQueue = DispatchQueue(label: "com.riguz.encryptions");
+    
     public static func register(with registrar: FlutterPluginRegistrar) {
         let channel = FlutterMethodChannel(name: "encryptions", binaryMessenger: registrar.messenger())
         let instance = SwiftEncryptionsPlugin()
@@ -18,14 +24,19 @@ public class SwiftEncryptionsPlugin: NSObject, FlutterPlugin {
             let padding = args["padding"] as! String;
             let mode = args["mode"] as! String;
             
-            do {
-                let cipher = try handleAes(key: key.data, iv: iv.data, value: value.data, mode: mode, padding: padding, method: call.method);
-                result(cipher);
-            } catch let err as NSError{
-                
-                let error = FlutterError(code: "500", message:err.localizedDescription, details: err.description)
-                result(error)
-            };
+            dispQueue.async {
+                do {
+                    let cipher = try self.handleAes(key: key.data, iv: iv.data, value: value.data, mode: mode, padding: padding, method: call.method);
+                    DispatchQueue.main.async {
+                        result(cipher);
+                    }
+                } catch let err as NSError{
+                    
+                    let error = FlutterError(code: "500", message:err.localizedDescription, details: err.description)
+                    result(error)
+                };
+            }
+            
         case "argon2i", "argon2d", "argon2id":
             let password = args["password"] as! FlutterStandardTypedData;
             let salt = args["salt"] as! FlutterStandardTypedData;
@@ -33,12 +44,16 @@ public class SwiftEncryptionsPlugin: NSObject, FlutterPlugin {
             let memory = args["memory"] as! UInt32;
             let parallelism = args["parallelism"] as! UInt32;
             let hashLength = args["hashLength"] as! UInt32;
-            do {
-                let hash = try handleArgon2(iterations: iterations, memory: memory, parallelism: parallelism, hashLength: hashLength, password: password.data, salt: salt.data, method: call.method);
-                result(hash);
-            } catch let err as NSError {
-                let error = FlutterError(code: "500", message:err.localizedDescription, details: err.description)
-                result(error)
+            dispQueue.async {
+                do {
+                    let hash = try self.handleArgon2(iterations: iterations, memory: memory, parallelism: parallelism, hashLength: hashLength, password: password.data, salt: salt.data, method: call.method);
+                    DispatchQueue.main.async {
+                        result(hash);
+                    }
+                } catch let err as NSError {
+                    let error = FlutterError(code: "500", message:err.localizedDescription, details: err.description)
+                    result(error)
+                }
             }
         default:
             result(FlutterMethodNotImplemented);
