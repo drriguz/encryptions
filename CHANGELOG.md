@@ -41,6 +41,6 @@ Notice: version 0.0.1 is deprecated, consider using the latest version.
 * Removed the `*Isloated` APIs introduced in 0.0.5, because the performance is not ideal.
 * Using native thread(in Android) and DispatchQueue(in ios) to unblock main UI
 
-## 0.1.0
+## 1.0.0
 
 * Upgrade to  dart 2.12.0 (null safety)
