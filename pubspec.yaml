@@ -1,6 +1,6 @@
 name: encryptions
 description: A plugin for using native Argon2/AES in Android and IOS
-version: 0.0.6
+version: 0.1.0
 homepage: https://github.com/drriguz/encryptions
 
 environment:
