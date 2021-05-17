@@ -8,7 +8,12 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.2.1'
+        /**
+         * see:
+         * https://github.com/flutter/flutter/issues/53657
+         * remember that also need to update version in example/android
+         */
+        classpath 'com.android.tools.build:gradle:3.5.0'
     }
 }
 
@@ -22,7 +27,7 @@ rootProject.allprojects {
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 29
 
     defaultConfig {
         minSdkVersion 16

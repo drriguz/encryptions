@@ -5,6 +5,7 @@
 .pub/
 
 build/
+.cxx
 
 *.iml
 *.ipr

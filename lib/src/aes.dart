@@ -4,7 +4,7 @@ import 'package:convert/convert.dart';
 import 'package:encryptions/src/cipher_options.dart';
 import 'package:flutter/services.dart';
 
-final Uint8List _emptyIv = hex.decode("00000000000000000000000000000000");
+final Uint8List _emptyIv = Uint8List.fromList(hex.decode("00000000000000000000000000000000"));
 
 class AES {
   static const MethodChannel _platform = const MethodChannel('encryptions');
@@ -48,12 +48,12 @@ class AES {
     ArgumentError.checkNotNull(bytes);
     if (_padding == PaddingScheme.NoPadding && bytes.lengthInBytes % 16 != 0)
       throw ArgumentError("Bytes length must be multiple of block length");
-    return _platform.invokeMethod("aesEncrypt", createAESArguments(bytes));
+    return await _platform.invokeMethod("aesEncrypt", createAESArguments(bytes));
   }
 
   Future<Uint8List> decrypt(final Uint8List bytes) async {
     ArgumentError.checkNotNull(bytes);
 
-    return _platform.invokeMethod("aesDecrypt", createAESArguments(bytes));
+    return await _platform.invokeMethod("aesDecrypt", createAESArguments(bytes));
   }
 }

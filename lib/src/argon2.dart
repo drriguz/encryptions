@@ -17,16 +17,16 @@ class Argon2 {
     this.hashLength = 32,
   });
 
-  Future<Uint8List> argon2i(Uint8List password, Uint8List salt) {
-    return _platform.invokeMethod("argon2i", _createParams(password, salt));
+  Future<Uint8List> argon2i(Uint8List password, Uint8List salt) async{
+    return await _platform.invokeMethod("argon2i", _createParams(password, salt));
   }
 
-  Future<Uint8List> argon2d(Uint8List password, Uint8List salt) {
-    return _platform.invokeMethod("argon2d", _createParams(password, salt));
+  Future<Uint8List> argon2d(Uint8List password, Uint8List salt) async{
+    return await _platform.invokeMethod("argon2d", _createParams(password, salt));
   }
 
-  Future<Uint8List> argon2id(Uint8List password, Uint8List salt) {
-    return _platform.invokeMethod("argon2id", _createParams(password, salt));
+  Future<Uint8List> argon2id(Uint8List password, Uint8List salt) async{
+    return await _platform.invokeMethod("argon2id", _createParams(password, salt));
   }
 
   Map<String, dynamic> _createParams(Uint8List password, Uint8List salt) => {
