@@ -1,8 +1,12 @@
 package com.riguz.encryptions;
 
+import androidx.annotation.NonNull;
+
 import com.riguz.encryptions.invoker.AESCall;
 import com.riguz.encryptions.invoker.Argon2Call;
 
+import io.flutter.embedding.engine.plugins.FlutterPlugin;
+import io.flutter.plugin.common.BinaryMessenger;
 import io.flutter.plugin.common.MethodChannel;
 import io.flutter.plugin.common.PluginRegistry.Registrar;
 
@@ -12,7 +16,7 @@ import io.flutter.plugin.common.PluginRegistry.Registrar;
     window that will build the Android project with Gradle and support editing Java/Kotlin files.
  */
 
-public class EncryptionsPlugin {
+public class EncryptionsPlugin implements FlutterPlugin {
     private static final FlutterCallExecutor executor = new FlutterCallExecutor();
 
     static {
@@ -21,7 +25,21 @@ public class EncryptionsPlugin {
     }
 
     public static void registerWith(Registrar registrar) {
-        final MethodChannel channel = new MethodChannel(registrar.messenger(), "encryptions");
+        registerWith(registrar.messenger());
+    }
+
+    @Override
+    public void onAttachedToEngine(@NonNull FlutterPluginBinding binding) {
+        registerWith(binding.getBinaryMessenger());
+    }
+
+    @Override
+    public void onDetachedFromEngine(@NonNull FlutterPluginBinding binding) {
+
+    }
+
+    private static void registerWith(final BinaryMessenger messenger) {
+        final MethodChannel channel = new MethodChannel(messenger, "encryptions");
         channel.setMethodCallHandler(executor);
     }
 }

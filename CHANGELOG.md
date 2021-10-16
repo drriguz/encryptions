@@ -44,3 +44,22 @@ Notice: version 0.0.1 is deprecated, consider using the latest version.
 ## 1.0.0
 
 * Upgrade to  dart 2.12.0 (null safety)
+
+## 1.1.0
+
+Migrated to support flutter 2.5+, according to [Supporting the new Android plugins APIs](https://flutter.dev/docs/development/packages-and-plugins/plugin-api-migration)
+
+Users should also consider to migrate your application, see [Android v1 embedding app and plugin creation deprecation
+](https://flutter.dev/docs/release/breaking-changes/android-v1-embedding-create-deprecation).
+
+Also, fixed the following issues:
+
+* [The plugin encryptions uses a deprecated version of the Android embedding](https://github.com/drriguz/encryptions/issues/7)
+* [uses a deprecated version of the Android embedding](https://github.com/drriguz/encryptions/issues/6)
+
+Please note that NDK 23+ seems not working, only tested in:
+
+* Flutter 2.5.3 
+* Dart 2.14.4
+* NDK 22.1.7171670
+* Android 11

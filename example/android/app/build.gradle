@@ -50,6 +50,16 @@ android {
             // TODO: Add your own signing config for the release build.
             // Signing with the debug keys for now, so `flutter run --release` works.
             signingConfig signingConfigs.debug
+
+            /*
+             * fix: MissingPluginException(No implementation found for method aesEncrypt on channel encryptions)
+             * in release mode ie.(flutter run --release)
+             * see: https://stackoverflow.com/questions/65872226/missingpluginexception-in-flutter-in-release-mode-android
+             *      https://developer.android.com/studio/build/shrink-code#enable
+             *      https://github.com/flutter/flutter/issues/65334
+             */
+            shrinkResources false
+            minifyEnabled false
         }
     }
 }
