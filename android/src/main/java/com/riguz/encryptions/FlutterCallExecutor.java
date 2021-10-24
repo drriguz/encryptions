@@ -6,6 +6,7 @@ import android.util.Log;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -75,12 +76,22 @@ public class FlutterCallExecutor implements MethodChannel.MethodCallHandler {
                     result.success(value);
                 }
             });
-        } catch (final Exception e) {
-            Log.e("FLUTTER_CALL", e.getMessage());
+        } catch (final InvocationTargetException e) {
+            final String message = e.getTargetException().getMessage();
+            Log.e("FLUTTER_CALL", message);
             jumpToMainThread(new Runnable() {
                 @Override
                 public void run() {
-                    result.error("FLUTTER_CALL_ERROR", "UNKNOWN", e.getMessage());
+                    result.error("FLUTTER_CALL_ERROR", "invocation error", message);
+                }
+            });
+        } catch (final Exception e) {
+            final String message = e.getMessage() == null ? "no error message" : e.getMessage();
+            Log.e("FLUTTER_CALL", message);
+            jumpToMainThread(new Runnable() {
+                @Override
+                public void run() {
+                    result.error("FLUTTER_CALL_ERROR", "UNKNOWN", message);
                 }
             });
         }
